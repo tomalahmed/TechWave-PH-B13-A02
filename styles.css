@@ -5,9 +5,14 @@
     --primary-color: #FF2E93;
     --secondary-color: #FF8A00;
     --bg-dark: #190D2C;
+    --bg-card: #28104E;
     --text-white: #FFFFFF;
     --text-gray: #BDBDBD;
     --gradient-main: linear-gradient(90deg, #FF8A00 0%, #FF2E93 100%);
+    --gradient-text: linear-gradient(90deg, #FF8A00 0%, #FF2E93 100%);
+    --gradient-border: linear-gradient(135deg, #FF2E93 0%, #FF8A00 100%);
+
+    --max-width: 1200px;
 
 }
 
@@ -22,54 +27,396 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-dark);
     color: white;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* Header Styles */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px;
-    background-color: var(--bg-dark);
-    border-bottom: 1px solid #333;
-}
+/* shared style */
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    background: var(--gradient-main);
-    background-clip: text;
+.text-gradient {
+    background: var(--gradient-text);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
 }
 
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-}
 
-nav a {
+a {
     text-decoration: none;
-    color: var(--text-white);
-    font-weight: 500;
-    transition: color 0.3s ease;
+    color: inherit;
+    transition: var(--transition);
 }
 
-nav a:hover {
-    color: var(--primary-color);
+ul {
+    list-style: none;
 }
 
-/* shared styles */
-.btn-primary {
-    background-color: var(--primary-color);
-    color: white;
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+}
+
+.btn-primary {
+    background: var(--gradient-main);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #FF2E93 0%, #FF8A00 100%);
+    z-index: -1;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover::after {
+    transform: rotate(-15deg);
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-white);
+    border: 2px solid #00D2FF;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
     cursor: pointer;
 }
 
-.btn-primary:hover {
-    background-color: var(--secondary-color);
+.btn-outline:hover {
+    background: #00D2FF;
+    color: var(--bg-dark);
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.section-padding {
+    padding: 4rem 0;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Animations */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 46, 147, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(255, 46, 147, 0.8);
+    }
+
+    100% {
+        box-shadow: 0 0 10px rgba(255, 46, 147, 0.5);
+    }
+}
+
+
+/* Header */
+.header {
+    background: rgba(25, 13, 44, 0.95);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+   
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 92px;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list {
+    display: flex;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    padding: 0 1rem;
+}
+
+.nav-link {
+    font-weight: 500;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    padding: 0 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    opacity: 1;
+    background: var(--gradient-main);
+    color: var(--text-white);
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+}
+
+.nav-btn {
+    display: block;
+}
+
+.hamburger-menu {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-white);
+}
+
+.hero {
+    background: url('./assets/hero-bg.png') no-repeat center center/cover;
+    position: relative;
+    padding: 3rem 0;
+    min-height: 760px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+
+/* Podcast Circle & Badge */
+.podcast-circle-wrapper {
+  
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(255, 46, 147, 0.3);
+    overflow:inherit;
+    position: relative;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.podcast-circle {
+     background-image: url('./assets/hero-circle.png');
+       background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 220px;
+    height: 220px;
+    border: 7px solid transparent;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 30px rgba(255, 46, 147, 0.3);
+    animation: float 4s ease-in-out infinite;
+}
+
+.mic-icon {
+    width: 80px;
+    height: auto;
+}
+
+.new-badge {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    background: #00D2FF;
+    color: black;
+    border-radius: 20px;
+       font-weight: 600;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    opacity: 0.8;
+    z-index: 2;
+
+}
+
+/* Wave Effect behind circle */
+.wave-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.05);
+    z-index: -1;
+}
+
+.wave-effect::before,
+.wave-effect::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wave-effect::before {
+    width: 140%;
+    height: 140%;
+}
+
+.wave-effect::after {
+    width: 180%;
+    height: 180%;
+    opacity: 0.5;
+}
+
+/* Hero Text */
+.hero-content {
+    max-width: 700px;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-white);
+    /* White text as per instruction */
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.hero-buttons .btn i {
+    margin-right: 8px;
+}
+
+
+/* Responsive */
+@media (max-width: 992px) {
+    .nav-list {
+        display: none;
+            }
+
+    .nav-btn {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: block;
+        margin-left: auto;
+   
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-container {
+        padding-top: 2rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 2rem;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .podcast-circle-wrapper {
+        width: 240px;
+        height: 240px;
+    }
+
+    .podcast-circle {
+        width: 180px;
+        height: 180px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
 }
