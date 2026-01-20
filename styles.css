@@ -547,7 +547,6 @@ img {
     transform: translateY(-5px);
     opacity: 1;
     transition: all 0.3s ease;
-    animation: var(--animation-glow);
 }
 
 
@@ -571,6 +570,7 @@ img {
 .episode-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: var(--animation-glow);
 }
 
 .episode-img {
@@ -757,6 +757,7 @@ img {
 
 .footer-content {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -794,7 +795,6 @@ img {
 .footer-bottom {
     width: 100%;
     margin-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 2rem;
 }
 
@@ -807,14 +807,11 @@ img {
 
 /* Responsive */
 @media (max-width: 992px) {
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .container {
+        padding: 0 1.25rem;
     }
 
-    .nav-list {
-        display: none;
-    }
-
+    .nav-list,
     .nav-btn {
         display: none;
     }
@@ -822,71 +819,112 @@ img {
     .hamburger-menu {
         display: block;
         margin-left: auto;
+    }
 
+    .hero {
+        min-height: auto;
+        padding: 4rem 0;
     }
 
     .hero-title {
         font-size: 2.5rem;
     }
 
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
     .choose-grid {
-        padding: 3rem 1rem;
+        padding: 2.5rem 0.5rem;
     }
 
     .choose-grid-item {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
     }
 
-    .choose-grid-item .box1,
-    .choose-grid-item .box2,
-    .choose-grid-item .box3,
-    .choose-grid-item .box4,
-    .choose-grid-item .box5 {
-        grid-area: auto;
-        max-width: 100%;
-        max-height: none;
+    .choose-box {
+        max-width: 100% !important;
+        max-height: none !important;
+        padding: 2rem;
+    }
+
+    .episodes-grid {
+        grid-template-columns: 1fr;
+        padding: 0;
     }
 
     .host-container {
         flex-direction: column;
         text-align: center;
-        padding: 2rem;
+        padding: 2.5rem 1.5rem;
     }
 
     .host-img-box {
-        margin-left: 0;
-        margin-bottom: 2rem;
+        margin: 0 auto 2rem;
     }
 
     .host-socials {
         justify-content: center;
     }
 
-
     .footer-content {
         flex-direction: column;
-        gap: 2rem;
+        gap: 1.5rem;
     }
 
-    .footer-bottom {
-        margin-top: 1rem;
-        padding-top: 1rem;
+    .footer-socials ul {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
     }
 }
 
 @media (max-width: 576px) {
-    .hero-container {
-        padding-top: 2rem;
+    .section-padding {
+        padding: 3rem 0;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .podcast-circle-wrapper {
+        width: 200px;
+        height: 200px;
+    }
+
+    .podcast-circle {
+        width: 160px;
+        height: 160px;
+    }
+
+    .mic-icon {
+        width: 70px;
+    }
+
+    .new-badge {
+        top: 25px;
+        right: 30px;
+        font-size: 0.65rem;
+        padding: 4px 8px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
     }
 
     .hero-buttons {
         flex-direction: column;
-        width: 100%;
-        padding: 0 2rem;
+        gap: 1rem;
+        padding: 0 1rem;
     }
 
     .btn {
@@ -894,31 +932,36 @@ img {
         text-align: center;
     }
 
-    .podcast-circle-wrapper {
-        width: 240px;
-        height: 240px;
+    .about-text-content {
+        padding: 0 1rem 2rem 1rem;
     }
 
-    .podcast-circle {
-        width: 180px;
-        height: 180px;
+    .stat-number {
+        font-size: 1.8rem;
     }
 
-    .hero-title {
-        font-size: 2rem;
+    .stat-item {
+        padding: 1.5rem 0.5rem;
     }
 
-    .host-section-container {
-        padding: 2rem 1rem;
+    .choose-box h3 {
+        font-size: 1.3rem;
     }
 
-    .host-container {
-        padding: 2rem 1rem;
-        width: 100%;
+    .host-content h3 {
+        font-size: 1.5rem;
     }
 
-    .episodes-grid {
-        padding: 0;
+    .footer-socials a {
+        font-size: 1rem;
+    }
 
+    .footer-socials ul {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); 
+             gap: 1rem;
+    
+        justify-content: center;
+        align-items: center;
     }
 }
